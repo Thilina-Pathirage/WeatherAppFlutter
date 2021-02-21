@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/dasunpathirage/Documents/flutterAstudio/weatherapp/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/dasunpathirage/Documents/Git/WeatherAppFlutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/dasunpathirage/Documents/flutterAstudio/weatherapp/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/dasunpathirage/Documents/Git/WeatherAppFlutter/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
