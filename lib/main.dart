@@ -25,7 +25,9 @@ class _HomeState extends State<Home> {
   var currently;
   var humidity;
   var windSpeed;
-  var city = 'Kadawatha';
+  var city ="Gampaha";
+
+  final cityCon =  new TextEditingController();
 
   Future getWeather () async {
     http.Response response = await http.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=6dcb204ca822c16b039d49130d6deced");
@@ -36,7 +38,6 @@ class _HomeState extends State<Home> {
       this.currently = results['weather'][0]['main'];
       this.humidity = results['main']['humidity'];
       this.windSpeed = results['wind']['speed'];
-
     });
   }
 
@@ -49,13 +50,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {
+            city = cityCon.text;
+          });
+        },
+        label: Text('Set'),
+        icon: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
       body: Column(
         children: <Widget>[
 
           Container(
             height: MediaQuery.of(context).size.height / 3,
             width: MediaQuery.of(context).size.width,
-            color: Colors.orange,
+            color: Colors.blue,
 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +75,7 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                      'Currently in ' + city,
+                      'Moda Thilina is at ' + city,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,
@@ -73,7 +84,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Text(
-                  temp != null ? temp.toString() + '\u00B0' : 'Loading',
+                  temp != null ? temp.toString() + '\u00B0' : 'Tikak Idaam',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 40.0,
@@ -83,7 +94,7 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Text(
-                    currently != null ? currently.toString() : 'Loading',
+                    currently != null ? currently.toString() : 'Idapan ban',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
@@ -99,10 +110,16 @@ class _HomeState extends State<Home> {
               padding: EdgeInsets.all(20.0),
               child: ListView(
                 children: <Widget>[
+                  TextField(
+                    controller: cityCon,
+                    decoration: InputDecoration(
+                      hintText: "Enter City Name",
+                    ),
+                  ),
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.thermometerHalf),
                     title: Text("Temperature"),
-                    trailing: Text(temp != null ? temp.toString() + '\u00B0' : 'Loading'),
+                    trailing: Text(temp != null ? temp.toString() + '\u00B0' : 'Load wena gaman'),
                   ),
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.cloud),
@@ -125,6 +142,8 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+
     );
   }
+
 }
